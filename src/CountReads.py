@@ -39,6 +39,9 @@ def parseSamFile(sam_file,isolate_file,output_path):
     samples = samfile[samfile['QNAME'].str.contains('SRR')]
     samples = samples[['QNAME','RNAME']]
     
+    # Exclude fragment value from QNAME
+    samples['QNAME'] = samples['QNAME'].str.split('.').str[0]
+    
     # Read references file and take only RNAME
     references = pd.read_csv(isolate_file, header=None, delimiter='\t', usecols=[3], names=["RNAME"])
     

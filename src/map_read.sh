@@ -25,3 +25,5 @@ bowtie2 -x ./data/Ruminococcus_gnavus/Ruminococcus_gnavus --sra-acc SRR5651392 -
 echo "READ SRR5651391"
 bowtie2 -x ./data/Ruminococcus_gnavus/Ruminococcus_gnavus --sra-acc SRR5651391 -S ./data/mapped_reads/SRR5651391.sam
 echo "task complete"
+
+

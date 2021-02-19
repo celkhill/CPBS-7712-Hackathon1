@@ -64,10 +64,12 @@ def countReads(samples_dataframe,references, output_path):
     sample_counts = sample_counts.unstack(level=1)
     # Get all references which are not already present in dataframe and add as count 0
     new_ref = references['RNAME'].unique().tolist()
-    sample_counts_all = sample_counts.assign(**dict.fromkeys(new_ref, '0'))
+    ref_extra = pd.DataFrame([0*len(new_ref)],columns=new_ref)
+    sample_counts_all = pd.concat([sample_counts,ref_extra],axis=1)
+    #sample_counts_all = sample_counts.assign(**dict.fromkeys(new_ref, '0'))
 
 
-    sample_counts_all.to_csv(output_path+"/sample_counts.csv")
+    sample_counts_all.to_csv(output_path+"/sample_counts_sep.csv")
     return sample_counts_all
     
 
